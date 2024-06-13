@@ -1,3 +1,5 @@
+// Yahya Mahmoud
+
 import 'package:flutter/material.dart';
 import 'package:project_oc_committe/widgets/menuButton.dart';
 
@@ -18,22 +20,18 @@ class _MenuState extends State<Menu> {
           border: Border(bottom: BorderSide(color: Colors.grey, width: 1))),
       child: ListView(
         scrollDirection: Axis.horizontal,
-        children: [
+        children: const [
           Button(
             text: "Materials",
-            active: true,
           ),
           Button(
             text: "Tasks",
-            active: false,
           ),
           Button(
             text: "Events",
-            active: false,
           ),
           Button(
             text: "Members",
-            active: false,
           ),
         ],
       ),
