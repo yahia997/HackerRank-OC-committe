@@ -5,8 +5,10 @@ class Events extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Text("Events"),
+    return Expanded( //expands a child of a [Row], [Column], or [Flex] so that the child fills the available space along the flex widget's main axis.
+      child: SingleChildScrollView(
+        child: Text("Events"),
+      ),
     );
   }
 }
