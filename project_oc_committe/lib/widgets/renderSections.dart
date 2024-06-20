@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:project_oc_committe/screens/events.dart';
+import 'package:project_oc_committe/screens/ideas.dart';
 import 'package:project_oc_committe/screens/materials.dart';
 import 'package:project_oc_committe/screens/members.dart';
 import 'package:project_oc_committe/screens/tasks.dart';
@@ -22,6 +23,8 @@ class RenderSection extends StatelessWidget {
           return const Tasks();
         case "Events":
           return const Events();
+        case "Ideas":
+          return const Ideas();
         case "Members":
           return const Members();
         default:

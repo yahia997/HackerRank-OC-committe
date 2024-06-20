@@ -31,6 +31,9 @@ class _MenuState extends State<Menu> {
             text: "Events",
           ),
           Button(
+            text: "Ideas",
+          ),
+          Button(
             text: "Members",
           ),
         ],
