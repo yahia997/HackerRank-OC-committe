@@ -1,10 +1,10 @@
 /// class to use in calendar.
 class Event {
-  final String title;
-  final String description;
-  final String location;
-  final DateTime startDate;
-  final DateTime endDate;
+  String title;
+  String description;
+  String location;
+  DateTime startDate;
+  DateTime endDate;
 
   Event({
     required this.description,
