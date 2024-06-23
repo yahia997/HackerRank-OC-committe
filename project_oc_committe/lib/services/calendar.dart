@@ -10,7 +10,37 @@ class CalendarEvents extends ChangeNotifier {
           location: "",
           startDate: DateTime.utc(2024, 6, 20),
           title: "title",
-          endDate: DateTime.utc(2024, 6, 20))
+          endDate: DateTime.utc(2024, 6, 20)),
+      Event(
+          description: "",
+          location: "",
+          startDate: DateTime.utc(2024, 6, 20),
+          title: "title",
+          endDate: DateTime.utc(2024, 6, 20)),
+      Event(
+          description: "",
+          location: "",
+          startDate: DateTime.utc(2024, 6, 20),
+          title: "title",
+          endDate: DateTime.utc(2024, 6, 20)),
+      Event(
+          description: "",
+          location: "",
+          startDate: DateTime.utc(2024, 6, 20),
+          title: "title",
+          endDate: DateTime.utc(2024, 6, 20)),
+      Event(
+          description: "",
+          location: "",
+          startDate: DateTime.utc(2024, 6, 20),
+          title: "title",
+          endDate: DateTime.utc(2024, 6, 20)),
+      Event(
+          description: "",
+          location: "",
+          startDate: DateTime.utc(2024, 6, 20),
+          title: "title",
+          endDate: DateTime.utc(2024, 6, 20)),
     ],
   };
 
@@ -21,6 +51,11 @@ class CalendarEvents extends ChangeNotifier {
   TextEditingController eventDescription = TextEditingController();
   TextEditingController eventTitle = TextEditingController();
   TextEditingController eventLocation = TextEditingController();
+  TextEditingController fromHours = TextEditingController();
+  TextEditingController toHours = TextEditingController();
+  TextEditingController fromM = TextEditingController();
+  TextEditingController toM = TextEditingController();
+
 
   void addEvent(DateTime date, Event data) {
     // If we found that day before

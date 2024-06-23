@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_oc_committe/modules/Event.dart';
 import 'package:project_oc_committe/services/calendar.dart';
 import 'package:project_oc_committe/widgets/Calendar.dart';
 import 'package:project_oc_committe/widgets/EventForm.dart';
@@ -35,9 +34,6 @@ class _EventsState extends State<Events> {
                   children: [
                     // main calendar
                     Calendar(),
-
-                    // shows comming events
-                    EventsList(),
                     
                     // style will be changed later
                     EventForm(),
