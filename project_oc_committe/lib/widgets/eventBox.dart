@@ -25,31 +25,44 @@ class _EventBoxState extends State<EventBox> {
       decoration: BoxDecoration(
           color: Colors.grey[100],
           border: const Border(left: BorderSide(color: mainGreen, width: 3.5))),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(widget.data.startDate.toString()),
-          Text(widget.data.title),
-
-          // drop down button
-          IconButton(
-              onPressed: () {
-                setState(() {
-                  // to toggle it
-                  showDetails = !showDetails;
-                });
-              },
-              icon: showDetails ? const Icon(Icons.arrow_drop_up) : const Icon(Icons.arrow_drop_down)),
-          
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: showDetails ? [
-              Text("Location: "),
-              Text(widget.data.location.length > 0  ? widget.data.location:"No Location Specified"),
-              Text("description: "),
-              Text(widget.data.description.length > 0  ? widget.data.description:"No Description"),
-            ] : [],
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(widget.data.startDate.toString()),
+              Text(widget.data.title),
+          
+              // drop down button
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      // to toggle it
+                      showDetails = !showDetails;
+                    });
+                  },
+                  icon: showDetails ? const Icon(Icons.arrow_drop_up) : const Icon(Icons.arrow_drop_down)),
+              
+              // more details as dropdown menu
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: showDetails ? [
+                  Text("Location: "),
+                  Text(widget.data.location.length > 0  ? widget.data.location:"No Location Specified"),
+                  Text("description: "),
+                  Text(widget.data.description.length > 0  ? widget.data.description:"No Description"),
+                ] : [],
+              ),
+          
+              
+            ],
           ),
+
+          IconButton(onPressed: (){
+            // will open editing form add will make put request when user click update
+          }, icon: Icon(Icons.edit)),
         ],
       ),
     );

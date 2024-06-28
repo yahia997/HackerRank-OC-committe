@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project_oc_committe/services/calendar.dart';
 import 'package:project_oc_committe/widgets/Calendar.dart';
 import 'package:project_oc_committe/widgets/EventForm.dart';
-import 'package:project_oc_committe/widgets/eventsList.dart';
 import 'package:provider/provider.dart';
 
 class Events extends StatefulWidget {

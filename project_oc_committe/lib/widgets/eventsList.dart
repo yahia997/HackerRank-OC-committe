@@ -17,10 +17,14 @@ class _EventsListState extends State<EventsList> {
       builder: (context, value, child) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:
-              (value.events[DateTime.utc(value.selectedDay.year, value.selectedDay.month,value.selectedDay.day)]?? []).map((e) =>
-               EventBox(data: e)
-              ).toList(),
+          children: (value.events[DateTime.utc(value.selectedDay.year,
+                      value.selectedDay.month, value.selectedDay.day)] ??
+                  [])
+              .map((e) {
+            return EventBox(
+              data: e,
+            );
+          }).toList(),
         );
       },
     );
