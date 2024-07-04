@@ -10,51 +10,70 @@ class CalendarEvents extends ChangeNotifier {
           location: "",
           startDate: DateTime.utc(2024, 6, 20),
           title: "title",
-          endDate: DateTime.utc(2024, 6, 20)),
+          endDate: DateTime.utc(2024, 6, 20),
+          from: "5:00",
+          to: "7:00",
+          ),
       Event(
           description: "",
           location: "",
           startDate: DateTime.utc(2024, 6, 20),
           title: "title",
-          endDate: DateTime.utc(2024, 6, 20)),
+          endDate: DateTime.utc(2024, 6, 20),
+          from: "5:00",
+          to: "7:00",
+          ),
       Event(
           description: "",
           location: "",
           startDate: DateTime.utc(2024, 6, 20),
           title: "title",
-          endDate: DateTime.utc(2024, 6, 20)),
+          endDate: DateTime.utc(2024, 6, 20),
+          from: "5:00",
+          to: "7:00",
+          ),
       Event(
           description: "",
           location: "",
           startDate: DateTime.utc(2024, 6, 20),
           title: "title",
-          endDate: DateTime.utc(2024, 6, 20)),
+          endDate: DateTime.utc(2024, 6, 20),
+          from: "5:00",
+          to: "7:00",
+          ),
       Event(
           description: "",
           location: "",
           startDate: DateTime.utc(2024, 6, 20),
           title: "title",
-          endDate: DateTime.utc(2024, 6, 20)),
+          endDate: DateTime.utc(2024, 6, 20),
+          from: "5:00",
+          to: "7:00",
+          ),
       Event(
           description: "",
           location: "",
           startDate: DateTime.utc(2024, 6, 20),
           title: "title",
-          endDate: DateTime.utc(2024, 6, 20)),
+          endDate: DateTime.utc(2024, 6, 20),
+          from: "5:00",
+          to: "7:00",
+          ),
+      Event(
+          description: "",
+          location: "",
+          startDate: DateTime.utc(2024, 6, 20),
+          title: "title",
+          endDate: DateTime.utc(2024, 6, 20),
+          from: "5:00",
+          to: "7:00",
+          ),
+      
     ],
   };
 
   // default selected day is the current day
   DateTime selectedDay = DateTime.now();
-
-  // information about the event that will be added and used will change it
-  TextEditingController eventDescription = TextEditingController();
-  TextEditingController eventTitle = TextEditingController();
-  TextEditingController eventLocation = TextEditingController();
-  TextEditingController fromHours = TextEditingController();
-  TextEditingController toHours = TextEditingController();
-  TextEditingController fromM = TextEditingController();
-  TextEditingController toM = TextEditingController();
 
 
   void addEvent(DateTime date, Event data) {

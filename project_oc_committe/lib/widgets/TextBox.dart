@@ -1,21 +1,14 @@
-// Yahya Mahmoud
-
-/*
-  This container wil be shown in materials section in OC
-  it will make user go to this material screen by id
-*/
-
 import 'package:flutter/material.dart';
 import 'package:project_oc_committe/constants/colors.dart';
-import 'package:project_oc_committe/modules/matrials_module.dart';
-import 'package:project_oc_committe/screens/singleMaterial.dart';
+import 'package:project_oc_committe/modules/task_module.dart';
+import 'package:project_oc_committe/screens/SingleTask.dart';
 
-class MaterialBox extends StatelessWidget {
-  const MaterialBox({
+class TaskBox extends StatelessWidget {
+  const TaskBox({
     super.key,
     required this.data
   });
-  final Materials data; // to make user able to go to its single screen
+  final Tasks data; // to make user able to go to its single screen
 
 
   @override
@@ -25,7 +18,7 @@ class MaterialBox extends StatelessWidget {
       showModalBottomSheet(
         context: context,
          builder: (BuildContext context){
-          return  singleMaterial(data:data);
+          return SingleTask(data:data);
          }
          );
       },
@@ -39,7 +32,7 @@ class MaterialBox extends StatelessWidget {
         child: Row(
           children: [
             const Icon(
-              Icons.book,
+              Icons.quiz,
               color: mainGreen,
               size: 50,
             ),
@@ -53,7 +46,7 @@ class MaterialBox extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.grey[850]),
                 ),
-                Text(data.date),
+                Text(data.startdate),
               ],
             ),
           ],

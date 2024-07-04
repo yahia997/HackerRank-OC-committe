@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_oc_committe/constants/colors.dart';
 import 'package:project_oc_committe/modules/Event.dart';
+import 'package:project_oc_committe/widgets/EventForm.dart';
 
 class EventBox extends StatefulWidget {
   const EventBox({super.key, required this.data});
@@ -34,7 +35,7 @@ class _EventBoxState extends State<EventBox> {
             children: [
               Text(widget.data.startDate.toString()),
               Text(widget.data.title),
-          
+
               // drop down button
               IconButton(
                   onPressed: () {
@@ -43,26 +44,29 @@ class _EventBoxState extends State<EventBox> {
                       showDetails = !showDetails;
                     });
                   },
-                  icon: showDetails ? const Icon(Icons.arrow_drop_up) : const Icon(Icons.arrow_drop_down)),
-              
+                  icon: showDetails
+                      ? const Icon(Icons.arrow_drop_up)
+                      : const Icon(Icons.arrow_drop_down)),
+
               // more details as dropdown menu
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: showDetails ? [
-                  Text("Location: "),
-                  Text(widget.data.location.length > 0  ? widget.data.location:"No Location Specified"),
-                  Text("description: "),
-                  Text(widget.data.description.length > 0  ? widget.data.description:"No Description"),
-                ] : [],
+                children: showDetails
+                    ? [
+                        Text("Location: "),
+                        Text(widget.data.location.length > 0
+                            ? widget.data.location
+                            : "No Location Specified"),
+                        Text("description: "),
+                        Text(widget.data.description.length > 0
+                            ? widget.data.description
+                            : "No Description"),
+                      ]
+                    : [],
               ),
-          
-              
             ],
           ),
-
-          IconButton(onPressed: (){
-            // will open editing form add will make put request when user click update
-          }, icon: Icon(Icons.edit)),
+          EventForm(icon: const Icon(Icons.edit), data: widget.data, addOrUpdate: false,),
         ],
       ),
     );

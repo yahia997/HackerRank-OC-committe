@@ -18,9 +18,9 @@ class RenderSection extends StatelessWidget {
     return Consumer<toggleSections>(builder: (context, value, child) {
       switch (value.activeSection) {
         case "Materials":
-          return const Materials();
+          return const MaterialScreen();
         case "Tasks":
-          return const Tasks();
+          return const TaskScreen();
         case "Events":
           return const Events();
         case "Ideas":

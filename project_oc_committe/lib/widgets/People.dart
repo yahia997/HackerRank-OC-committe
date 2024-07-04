@@ -15,7 +15,7 @@ class People extends StatelessWidget {
       alignment: Alignment.topLeft,
       child: Column(
         children: people
-            .map((obj) => Person(data: obj))
+            .map((e) => Person(data: e))
             .toList(),
       ),
     );

@@ -1,31 +1,21 @@
-// Yahya Mahmoud
-
-/*
-  This container wil be shown in materials section in OC
-  it will make user go to this material screen by id
-*/
-
 import 'package:flutter/material.dart';
 import 'package:project_oc_committe/constants/colors.dart';
-import 'package:project_oc_committe/modules/matrials_module.dart';
-import 'package:project_oc_committe/screens/singleMaterial.dart';
+import 'package:project_oc_committe/modules/idea.dart';
+import 'package:project_oc_committe/widgets/singleIdea.dart';
 
-class MaterialBox extends StatelessWidget {
-  const MaterialBox({
-    super.key,
-    required this.data
-  });
-  final Materials data; // to make user able to go to its single screen
-
+class IdeasList extends StatelessWidget {
+  const IdeasList({super.key, required this.data});
+  final List<Idea> data;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return Column(
+      children: data.map((e) => InkWell(
       onTap: () {
       showModalBottomSheet(
         context: context,
          builder: (BuildContext context){
-          return  singleMaterial(data:data);
+          return  SingleIdea(data: e);
          }
          );
       },
@@ -39,7 +29,7 @@ class MaterialBox extends StatelessWidget {
         child: Row(
           children: [
             const Icon(
-              Icons.book,
+              Icons.star,
               color: mainGreen,
               size: 50,
             ),
@@ -47,18 +37,19 @@ class MaterialBox extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  data.id,
+                  e.title,
                   style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey[850]),
                 ),
-                Text(data.date),
+                Text(e.description),
               ],
             ),
           ],
         ),
       ),
+    )).toList(),
     );
   }
 }

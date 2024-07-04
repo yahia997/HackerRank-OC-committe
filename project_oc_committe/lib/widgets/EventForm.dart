@@ -1,23 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:project_oc_committe/modules/Event.dart';
 import 'package:project_oc_committe/services/calendar.dart';
 import 'package:provider/provider.dart';
 
 class EventForm extends StatefulWidget {
-  const EventForm({super.key});
+  const EventForm({super.key, required this.icon, required this.data, required this.addOrUpdate});
+  final Icon icon;
+  final Event data;
+  final bool addOrUpdate;
 
   @override
   State<EventForm> createState() => _EventFormState();
 }
 
 class _EventFormState extends State<EventForm> {
+  // information about the event that will be added and used will change it
+  TextEditingController eventDescription = TextEditingController();
+  TextEditingController eventTitle = TextEditingController();
+  TextEditingController eventLocation = TextEditingController();
+  TextEditingController from = TextEditingController();
+  TextEditingController to = TextEditingController();
+
+  @override
+  void initState() {
+    eventDescription.text = widget.data.description;
+    eventTitle.text = widget.data.title;
+    eventLocation.text = widget.data.location;
+    from.text = widget.data.from;
+    to.text = widget.data.to;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<CalendarEvents>(
       builder: (context, value, _) {
         return FloatingActionButton(
-          child: const Text('Add Event'),
+          child: widget.icon,
           onPressed: () {
             // You can use `ref` here.
             showDialog(
@@ -33,7 +52,7 @@ class _EventFormState extends State<EventForm> {
                         children: [
                           // Title text input
                           TextFormField(
-                            controller: value.eventTitle,
+                            controller: eventTitle,
                             decoration: const InputDecoration(
                               labelText: 'Title',
                             ),
@@ -45,74 +64,19 @@ class _EventFormState extends State<EventForm> {
                               SizedBox(
                                 width: 100,
                                 child: TextFormField(
-                                    controller: value.fromHours,
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: <TextInputFormatter>[
-                                      // for below version 2 use this
-                                      FilteringTextInputFormatter.allow(
-                                          RegExp(r'[0-9]')),
-                                      // for version 2 and greater youcan also use this
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
+                                    controller: from,
                                     decoration: InputDecoration(
-                                      labelText: "Hours start",
-                                      hintText: "Hours start",
+                                      labelText: "Start time",
+                                      hintText: "Start time",
                                     )),
                               ),
                               SizedBox(
                                 width: 100,
                                 child: TextFormField(
-                                    controller: value.fromM,
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: <TextInputFormatter>[
-                                      // for below version 2 use this
-                                      FilteringTextInputFormatter.allow(
-                                          RegExp(r'[0-9]')),
-                                      // for version 2 and greater youcan also use this
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
+                                    controller: to,
                                     decoration: InputDecoration(
-                                      labelText: "Minutes start",
-                                      hintText: "Minutes start",
-                                    )),
-                              )
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 100,
-                                child: TextFormField(
-                                    controller: value.fromHours,
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: <TextInputFormatter>[
-                                      // for below version 2 use this
-                                      FilteringTextInputFormatter.allow(
-                                          RegExp(r'[0-9]')),
-                                      // for version 2 and greater youcan also use this
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
-                                    decoration: InputDecoration(
-                                      labelText: "Hours end",
-                                      hintText: "Hours end",
-                                    )),
-                              ),
-                              SizedBox(
-                                width: 100,
-                                child: TextFormField(
-                                    controller: value.fromM,
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: <TextInputFormatter>[
-                                      // for below version 2 use this
-                                      FilteringTextInputFormatter.allow(
-                                          RegExp(r'[0-9]')),
-                                      // for version 2 and greater youcan also use this
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
-                                    decoration: InputDecoration(
-                                      labelText: "Minutes end",
-                                      hintText: "Minutes end",
+                                      labelText: "End time",
+                                      hintText: "End time",
                                     )),
                               )
                             ],
@@ -120,7 +84,7 @@ class _EventFormState extends State<EventForm> {
 
                           // Location text input
                           TextFormField(
-                            controller: value.eventLocation,
+                            controller: eventLocation,
                             decoration: const InputDecoration(
                               labelText: 'Location',
                             ),
@@ -128,7 +92,7 @@ class _EventFormState extends State<EventForm> {
 
                           // Description text input
                           TextFormField(
-                            controller: value.eventDescription,
+                            controller: eventDescription,
                             decoration: const InputDecoration(
                               labelText: 'Description',
                             ),
@@ -149,41 +113,49 @@ class _EventFormState extends State<EventForm> {
                                   .pop('dialog');
                             }),
                         ElevatedButton(
-                            child: const Text("Create"),
+                            child: Text(widget.addOrUpdate ? "Create" : "Update"),
                             onPressed: () {
                               try {
                                 DateTime curr = DateTime.now();
 
                                 // create event object
                                 Event obj = Event(
-                                    description: value.eventDescription.text,
-                                    location: value.eventLocation.text,
-                                    startDate: value
-                                        .selectedDay, // will be changed by input later
-                                    endDate:
-                                        curr, // will be changed by input later
-                                    title: value.eventTitle.text);
-                                value.addEvent(
-                                    DateTime.utc(
-                                        value.selectedDay.year,
-                                        value.selectedDay.month,
-                                        value.selectedDay.day),
-                                    obj);
+                                    description: eventDescription.text,
+                                    location: eventLocation.text,
+                                    title: eventTitle.text,
+                                    from: from.text,
+                                    to: to.text);
 
-                                // to reset input fields
-                                value.eventTitle.text = "";
-                                value.eventDescription.text = "";
-                                value.eventLocation.text = "";
-                                value.fromHours.text = "";
-                                value.fromM.text = "";
-                                value.toHours.text = "";
-                                value.toM.text = "";
+                                obj.startDate = value.selectedDay;
+                                obj.endDate = curr;
+
+                                if(widget.addOrUpdate) {
+
+                                  // and will make post request to add
+                                  value.addEvent(
+                                      DateTime.utc(
+                                          value.selectedDay.year,
+                                          value.selectedDay.month,
+                                          value.selectedDay.day),
+                                      obj);
+                                }else {
+                                  // and will make put request to update
+                                }
+
+                                if(widget.addOrUpdate) {
+                                  // to reset input fields
+                                  eventTitle.text = "";
+                                  eventDescription.text = "";
+                                  eventLocation.text = "";
+                                  from.text = "";
+                                  to.text = "";
+                                }
 
                                 // shows message to user
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                         content:
-                                            Text("Event added Successfully")));
+                                            Text("Event Updated Successfully")));
                               } catch (err) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
