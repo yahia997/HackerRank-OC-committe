@@ -23,7 +23,7 @@ class Ideas extends StatelessWidget {
             ],),
 
             // this will be for specific users only
-            // IdeasForm(),
+            IdeasForm(),
           ],
         ),
       ),

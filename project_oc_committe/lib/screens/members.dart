@@ -6,6 +6,7 @@
 */
 
 import 'package:flutter/material.dart';
+import 'package:project_oc_committe/widgets/Add%20Member.dart';
 import 'package:project_oc_committe/widgets/MembersListTitles.dart';
 import 'package:project_oc_committe/widgets/People.dart';
 // import 'package:task_sec_3/constants/colors.dart';
@@ -24,8 +25,21 @@ class Members extends StatelessWidget {
               .width, // to make width 100% of the screen
           alignment: Alignment.topLeft,
           padding: const EdgeInsets.all(15),
-          child: const Column(
+          child: Column(
             children: [
+              // add member for admin only
+              Column(
+                children: [
+                  const Text("Add new Person"),
+
+                  AddMember(add: true, data: const {
+                    "name" : "",
+                    "role" : "Member",
+                    "year" : "First Year",
+                  },),
+                ],
+              ),
+
               // title
               MembersListTitles(text: "Head"),
               // people who have this title
